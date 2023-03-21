@@ -15,7 +15,7 @@ Antes de começar, você vai precisar ter instalado
 
 ```bash
 # Criando diretorios
-$ mkdir -p /opt/app/zabbix
+$ mkdir -p /opt/app/
 
 # Acessando diretorio
 $ cd /opt/app
