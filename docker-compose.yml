@@ -497,9 +497,9 @@ networks:
     driver: bridge
     driver_opts:
       com.docker.network.enable_ipv6: "false"
-    ipam:
-      driver: default
-      config:
+#    ipam:
+#      driver: default
+#      config:
 #        - subnet: 10.255.250.0/24
 #          gateway: 10.255.250.1
   zbx_net_backend:
@@ -507,9 +507,9 @@ networks:
     driver_opts:
       com.docker.network.enable_ipv6: "false"
     internal: true
-    ipam:
-      driver: default
-      config:
+ #   ipam:
+ #     driver: default
+ #     config:
  #       - subnet: 10.255.251.0/24
  #         gateway: 10.255.251.1
 
