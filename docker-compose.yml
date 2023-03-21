@@ -245,7 +245,7 @@ services:
   deploy:
    resources:
     limits:
-      cpus: '0.70'
+      cpus: '3.70'
       memory: 512M
     reservations:
       cpus: '0.5'
@@ -301,7 +301,7 @@ services:
   deploy:
    resources:
     limits:
-      cpus: '0.2'
+      cpus: '3.2'
       memory: 128M
     reservations:
       cpus: '0.1'
@@ -416,6 +416,8 @@ services:
  mysql-server:
   image: mysql:8.0-oracle
   restart: always
+  ports:
+   - "3306:3306"
   command:
    - mysqld
    - --character-set-server=utf8mb4
@@ -448,26 +450,35 @@ services:
  db_data_mysql:
    image: busybox
    volumes:
-    - /opt/app/zabbix/zbx_env/var/lib/mysql:/var/lib/mysql:rw 
+    - /opt/app/zabbix/zbx_env/var/lib/mysql:/var/lib/mysql:rw
    networks:
       zbx_net_frontend:
         ipv4_address: 10.255.250.8
- grafana:
-    container_name: grafana
-    image: grafana/grafana
-    networks:
-      zbx_net_backend:
-    links:
-      - mysql-server
-      - zabbix-server
+ influxdb:
+    image: influxdb:1.7
     restart: always
     ports:
-      - '3000:3000'
-    environment: 
-      - GF_INSTALL_PLUGINS=alexanderzobnin-zabbix-app
-    depends_on:
-      - mysql-server
-      - zabbix-server
+     - "8086:8086"
+    volumes:
+      - influxdb-storage:/var/lib/influxdb
+    environment:
+      INFLUXDB_DB: actualdb
+ grafana:
+   image: grafana/grafana:9.4.0
+   restart: always
+   ports:
+      - "3000:3000"
+   depends_on:
+      - influxdb
+   volumes:
+      - grafana-storage:/var/lib/grafana
+   networks:
+    zbx_net_frontend:
+      aliases:
+      - grafana-server
+    zbx_net_backend:
+      aliases:
+      - grafana-server-back
 # elasticsearch:
 #  image: elasticsearch
 #  profiles:
@@ -504,6 +515,10 @@ networks:
 
 volumes:
   snmptraps:
+  grafana-storage:
+    external: true
+  influxdb-storage:
+    external: true
 
 secrets:
   MYSQL_USER:
