@@ -460,7 +460,7 @@ services:
     ports:
      - "8086:8086"
     volumes:
-      - influxdb-storage:/var/lib/influxdb
+      - ./zabbix/grafana/var/lib/influxdb:/var/lib/influxdb
     environment:
       INFLUXDB_DB: actualdb
  grafana:
@@ -471,7 +471,7 @@ services:
    depends_on:
       - influxdb
    volumes:
-      - grafana-storage:/var/lib/grafana
+      - ./zabbix/grafana/var/lib/grafana:/var/lib/grafana
    networks:
     zbx_net_frontend:
       aliases:
@@ -515,10 +515,10 @@ networks:
 
 volumes:
   snmptraps:
-  grafana-storage:
-    external: true
-  influxdb-storage:
-    external: true
+#  grafana-storage:
+#    external: true
+#  influxdb-storage:
+#    external: true
 
 secrets:
   MYSQL_USER:
