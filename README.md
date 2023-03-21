@@ -23,6 +23,9 @@ $ cd /opt/app
 # Fazendo Git do projeto
 $ git clone https://github.com/Math-benites/zabbix-compose-6.0.git . 
 
+# Adptacoes Tecnicas a serem resolvidas
+$ chmod -R +777 /opt/app/zabbix/grafana/
+
 # Rodando compose
 $ docker compose up -d
 
