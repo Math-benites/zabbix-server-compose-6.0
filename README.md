@@ -11,7 +11,7 @@ Antes de começar, você vai precisar ter instalado
 
 
 
-### 🎲 Rodando Compose)
+### 🎲 ( Rodando Compose )
 
 ```bash
 # Criando diretorios
