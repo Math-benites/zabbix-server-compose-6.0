@@ -1,5 +1,5 @@
 # zabbix-compose-6.0
-Compose zabbix 6.0 + grafana plugin zabbix
+Compose zabbix 6.0 + grafana
 
 Tutorial
 
