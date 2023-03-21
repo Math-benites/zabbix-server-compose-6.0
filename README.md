@@ -24,6 +24,8 @@ $ cd /opt/app
 $ git clone https://github.com/Math-benites/zabbix-compose-6.0.git . 
 
 # Adptacoes Tecnicas a serem resolvidas
+$ mkdir -p /opt/app/zabbix/grafana/var/lib/influxdb
+$ mkdir -p /opt/app/zabbix/grafana/var/lib/grafana
 $ chmod -R +777 /opt/app/zabbix/grafana/
 
 # Rodando compose
