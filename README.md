@@ -7,15 +7,15 @@ Antes de começar, você vai precisar ter instalado
 
 [Docker Compose version v2.3.3 igual ou superior]
 
-[Docker Engine Version:23.0.1 igual ou superior]
+[Docker Engine Version: 23.0.1 igual ou superior]
 
 
 
-### 🎲 Rodando Compose)
+### 🎲 ( Rodando Compose )
 
 ```bash
 # Criando diretorios
-$ mkdir -p /opt/app/zabbix
+$ mkdir -p /opt/app/
 
 # Acessando diretorio
 $ cd /opt/app
@@ -29,3 +29,18 @@ $ docker compose up -d
 # O servidor Zabbix inciará na porta:80 - acesse <http://MYIP/>
 # O servidor Grafana inciará na porta:3000 - acesse <http://MYIP:3000>
 ```
+
+### 🔧 ( Alterando Configuracoes - Opicional )
+
+```bash
+# Zabbix server.config
+$ nano ./zabbix/env_vars/.env_srv
+
+# Zabbix web.config
+$ nano ./zabbix/env_vars/.env_web
+
+# Zabbix mysql.config
+$ nano ./zabbix/env_vars/.env_db_mysql
+```
+
+
