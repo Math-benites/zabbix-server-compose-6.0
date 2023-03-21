@@ -1,21 +1,31 @@
-# zabbix-compose-6.0
-Compose zabbix 6.0 + grafana
+<h1 align="center">Zabbix - Compose </h1>
 
-Tutorial
+### Pré-requisitos
 
-acesse o diretorio /opt
+Antes de começar, você vai precisar ter instalado 
+[Ubuntu 22.04 LTS ](https://releases.ubuntu.com/jammy/)
 
-cd /opt
+[Docker Compose version v2.3.3 igual ou superior]
 
-crie uma pasta app e subpasta zabbix
+[Docker Engine Version:23.0.1 igual ou superior]
 
-mkdir app/zabbix
 
-acesse o direto app
 
-cd app
+### 🎲 Rodando Compose)
 
-realize o clone do repositorio
+```bash
+# Criando diretorios
+$ mkdir -p /opt/app/zabbix
 
-git clone https://github.com/Math-benites/zabbix-compose-6.0.git
+# Acessando diretorio
+$ cd /opt/app
 
+# Fazendo Git do projeto
+$ git clone https://github.com/Math-benites/zabbix-compose-6.0.git . 
+
+# Rodando compose
+$ docker compose up -d
+
+# O servidor Zabbix inciará na porta:80 - acesse <http://MYIP/>
+# O servidor Grafana inciará na porta:3000 - acesse <http://MYIP:3000>
+```
