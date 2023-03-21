@@ -29,3 +29,18 @@ $ docker compose up -d
 # O servidor Zabbix inciará na porta:80 - acesse <http://MYIP/>
 # O servidor Grafana inciará na porta:3000 - acesse <http://MYIP:3000>
 ```
+
+### 🔧 ( Alterando Configuracoes - Opicional )
+
+```bash
+# Zabbix server.config
+$ nano ./zabbix/env_vars/.env_srv
+
+# Zabbix web.config
+$ nano ./zabbix/env_vars/.env_web
+
+# Zabbix mysql.config
+$ nano ./zabbix/env_vars/.env_db_mysql
+```
+
+
