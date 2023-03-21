@@ -1,7 +1,6 @@
 version: '3.5'
 services:
  zabbix-server:
-   #  image: zabbix/zabbix-server-mysql:alpine-6.0-latest
   image: zabbix/zabbix-server-mysql:alpine-6.0.13
   restart: always
   ports:
@@ -23,14 +22,6 @@ services:
    nofile:
     soft: 20000
     hard: 40000
-  #deploy:
-   #resources:
-     #    limits:
-     #      cpus: '0.70'
-     #      memory: 2G
-    #reservations:
-     # cpus: '0.5'
-      #memory: 512M
   env_file:
    - ./zabbix/env_vars/.env_db_mysql
    - ./zabbix/env_vars/.env_srv
@@ -87,14 +78,6 @@ services:
    nofile:
     soft: 20000
     hard: 40000
-  #deploy:
-   #resources:
-    #limits:
-     # cpus: '0.70'
-     # memory: 512M
-    #reservations:
-     # cpus: '0.3'
-      #memory: 256M
   env_file:
    - ./zabbix/env_vars/.env_prx
    - ./zabbix/env_vars/.env_prx_sqlite3
@@ -136,14 +119,6 @@ services:
    nofile:
     soft: 20000
     hard: 40000
-  #deploy:
-   #resources:
-    #limits:
-     # cpus: '0.70'
-      #memory: 512M
-    #reservations:
-     # cpus: '0.3'
-     # memory: 256M
   env_file:
    - ./zabbix/env_vars/.env_db_mysql_proxy
    - ./zabbix/env_vars/.env_prx
@@ -187,14 +162,6 @@ services:
    - /etc/timezone:/etc/timezone:ro
    - ./zabbix/zbx_env/etc/ssl/apache2:/etc/ssl/apache2:ro
    - ./zabbix/zbx_env/usr/share/zabbix/modules/:/usr/share/zabbix/modules/:ro
-  #deploy:
-   #resources:
-    #limits:
-     # cpus: '0.70'
-      #memory: 512M
-    #reservations:
-     # cpus: '0.5'
-      #memory: 256M
   env_file:
    - ./zabbix/env_vars/.env_db_mysql
    - ./zabbix/env_vars/.env_web
@@ -242,14 +209,6 @@ services:
    - /etc/timezone:/etc/timezone:ro
    - ./zabbix/zbx_env/etc/ssl/nginx:/etc/ssl/nginx:ro
    - ./zabbix/zbx_env/usr/share/zabbix/modules/:/usr/share/zabbix/modules/:ro
-  #deploy:
-   #resources:
-    #limits:
-     # cpus: '3.70'
-      #memory: 512M
-    #reservations:
-     # cpus: '0.5'
-      #memory: 256M
   env_file:
    - ./zabbix/env_vars/.env_db_mysql
    - ./zabbix/env_vars/.env_web
@@ -298,15 +257,6 @@ services:
    - ./zabbix/zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules:ro
    - ./zabbix/zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc:ro
    - ./zabbix/zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys:ro
-  #deploy:
-   #resources:
-    #limits:
-     # cpus: '3.2'
-      #memory: 128M
-    #reservations:
-     # cpus: '0.1'
-      #memory: 64M
-   #mode: global
   env_file:
    - ./zabbix/env_vars/.env_agent
   privileged: true
@@ -331,14 +281,6 @@ services:
    - all
   ports:
    - "10052:10052"
-  #deploy:
-   #resources:
-    #limits:
-     # cpus: '0.5'
-      #memory: 512M
-    #reservations:
-     # cpus: '0.25'
-      #memory: 256M
   env_file:
    - ./zabbix/env_vars/.env_java
   networks:
@@ -362,14 +304,6 @@ services:
    - "162:1162/udp"
   volumes:
    - snmptraps:/var/lib/zabbix/snmptraps:rw
-  #deploy:
-   #resources:
-    #limits:
-     # cpus: '0.5'
-      #memory: 256M
-    #reservations:
-     # cpus: '0.25'
-     # memory: 128M
   networks:
    zbx_net_frontend:
     aliases:
@@ -391,14 +325,6 @@ services:
    - ./zabbix/zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc:ro
   security_opt:
    - seccomp:./zabbix/env_vars/chrome_dp.json
-  #deploy:
-   #resources:
-    #limits:
-     # cpus: '0.5'
-      #memory: 512M
-    #reservations:
-     # cpus: '0.25'
-     # memory: 256M
   env_file:
    - ./zabbix/env_vars/.env_web_service
   networks:
@@ -453,7 +379,6 @@ services:
     - /opt/app/zabbix/zbx_env/var/lib/mysql:/var/lib/mysql:rw
    networks:
       zbx_net_frontend:
-#        ipv4_address: 10.255.250.8
  influxdb:
     image: influxdb:1.7
     restart: always
@@ -497,29 +422,13 @@ networks:
     driver: bridge
     driver_opts:
       com.docker.network.enable_ipv6: "false"
-#    ipam:
-#      driver: default
-#      config:
-#        - subnet: 10.255.250.0/24
-#          gateway: 10.255.250.1
   zbx_net_backend:
     driver: bridge
     driver_opts:
       com.docker.network.enable_ipv6: "false"
     internal: true
- #   ipam:
- #     driver: default
- #     config:
- #       - subnet: 10.255.251.0/24
- #         gateway: 10.255.251.1
-
 volumes:
   snmptraps:
-#  grafana-storage:
-#    external: true
-#  influxdb-storage:
-#    external: true
-#
 
 secrets:
   MYSQL_USER:
