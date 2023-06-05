@@ -16,24 +16,28 @@ Antes de começar, você vai precisar ter instalado
 ```bash
 # Criando diretorios
 $ mkdir -p /opt/app/
-
+```
+```bash
 # Acessando diretorio
 $ cd /opt/app
-
+```
+```bash
 # Fazendo Git do projeto
 $ git clone https://github.com/Math-benites/zabbix-compose-6.0.git . 
-
+```
+```bash
 # Adptacoes Tecnicas a serem resolvidas
 $ mkdir -p /opt/app/zabbix/grafana/var/lib/influxdb
 $ mkdir -p /opt/app/zabbix/grafana/var/lib/grafana
 $ chmod -R +777 /opt/app/zabbix/grafana/
-
+```
+```bash
 # Rodando compose
 $ docker compose up -d
-
-# O servidor Zabbix inciará na porta:80 - acesse <http://MYIP/>
-# O servidor Grafana inciará na porta:3000 - acesse <http://MYIP:3000>
 ```
+
+O servidor Zabbix inciará na porta:80 - acesse <http://MYIP/>
+O servidor Grafana inciará na porta:3000 - acesse <http://MYIP:3000>
 
 ### 🔧 ( Alterando Configuracoes - Opicional )
 
