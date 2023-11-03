@@ -342,8 +342,8 @@ services:
  mysql-server:
   image: mysql:8.0-oracle
   restart: always
-  ports:
-   - "3306:3306"
+#  ports:
+#   - "3306:3306"
   command:
    - mysqld
    - --character-set-server=utf8mb4
@@ -385,7 +385,7 @@ services:
     ports:
      - "8086:8086"
     volumes:
-      - ./zabbix/grafana/var/lib/influxdb:/var/lib/influxdb
+      - grafana-db:/var/lib/influxdb
     environment:
       INFLUXDB_DB: actualdb
  grafana:
@@ -396,7 +396,7 @@ services:
    depends_on:
       - influxdb
    volumes:
-      - ./zabbix/grafana/var/lib/grafana:/var/lib/grafana
+      - grafana:/var/lib/grafana
    networks:
     zbx_net_frontend:
       aliases:
@@ -429,6 +429,8 @@ networks:
     internal: true
 volumes:
   snmptraps:
+  grafana:
+  grafana-db:
 
 secrets:
   MYSQL_USER:
